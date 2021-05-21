@@ -4,18 +4,12 @@ import traceback
 
 
 
-def get_sql_context_instance(spark_context):
-    if ('sqlContextSingletonInstance' not in globals()):
-        globals()['sqlContextSingletonInstance'] = SQLContext(spark_context)
-        return globals()['sqlContextSingletonInstance']
-
 def process_rdd(time, rdd):
     print("----------- %s -----------" % str(time))
     try:
-        # obtén el contexto spark sql singleton desde el contexto actual
 
         sql_context = SQLContext(rdd.context)
-        # convierte el RDD a Row RDD
+
         if len(rdd.take(1)) == 0:
             return
         row_rdd = rdd.map(lambda w: Row(word=w[0], word_count=w[1]))
