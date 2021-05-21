@@ -1,15 +1,12 @@
 import sys
 from pyspark.sql import Row,SQLContext
-import traceback
 
 
 
 def process_rdd(time, rdd):
     print("----------- %s -----------" % str(time))
     try:
-
         sql_context = SQLContext(rdd.context)
-
         if len(rdd.take(1)) == 0:
             return
         row_rdd = rdd.map(lambda w: Row(word=w[0], word_count=w[1]))

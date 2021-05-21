@@ -6,7 +6,7 @@ conf = SparkConf()
 conf.setAppName("NewsStreaming")
 
 sc = SparkContext("local[2]", "NetworkWordCount",conf=conf)
-ssc = StreamingContext(sc, 20)
+ssc = StreamingContext(sc, 10)
 
 lines = ssc.socketTextStream("localhost", 9000)
 words = lines.flatMap(lambda line: line.split(" "))
