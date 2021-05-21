@@ -5,7 +5,6 @@ from process import process_rdd
 conf = SparkConf()
 conf.setAppName("NewsStreaming")
 
-# Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[2]", "NetworkWordCount",conf=conf)
 ssc = StreamingContext(sc, 20)
 
